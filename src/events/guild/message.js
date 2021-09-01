@@ -179,7 +179,7 @@ module.exports = async (Discord, client, message) => {
     "MANAGE_ROLES",
     "MANAGE_WEBHOOKS",
     "MANAGE_EMOJIS",
-  ]
+  ];
 
   const blacklistedServers = await blacklistServers.findOne({
     Server: message.guild.id
@@ -201,14 +201,14 @@ module.exports = async (Discord, client, message) => {
 
           if (time_left.toFixed(1) >= 3600) {
             let hour = (time_left.toFixed(1) / 3600);
-            return message.reply(`Please wait ${parseInt(hour)} more hours before using \`${command.name}\`!`)
+            return message.reply(`Please wait ${parseInt(hour)} more hours before using the \`${command.name}\` command!`)
           }
           if (time_left.toFixed(1) >= 60) {
             let minute = (time_left.toFixed(1) / 60);
-            return message.reply(`Please wait ${parseInt(minute)} more minutes before using \`${command.name}\`!`)
+            return message.reply(`Please wait ${parseInt(minute)} more minutes before using the \`${command.name}\` command!`)
           }
           let seconds = (time_left.toFixed(1));
-          return message.reply(`Please wait ${parseInt(seconds)} more seconds before using \`${command.name}\`!`)
+          return message.reply(`Please wait ${parseInt(seconds)} more seconds before using the \`${command.name}\` command!`)
         } else {
           await cooldown.findOneAndUpdate({ userId: message.author.id, cmd: command.name }, { time: current_time });
           command.execute(message, args, cmd, client, Discord, profileData);
